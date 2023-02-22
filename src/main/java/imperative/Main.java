@@ -1,8 +1,8 @@
 package imperative;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -46,6 +46,19 @@ public class Main {
         public Person(String name, Gender gender) {
             this.name = name;
             this.gender = gender;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Person person = (Person) o;
+            return Objects.equals(name, person.name) && gender == person.gender;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name, gender);
         }
 
         @Override
